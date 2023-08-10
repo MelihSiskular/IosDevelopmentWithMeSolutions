@@ -353,41 +353,45 @@ func solveQuestion7() {
     
     var i = 3
     
-    while primes.count < 10001 {
-       
-        var isPrime = false
+   
+    
+    while primes.count < 10001 { //We're doing this again and again until we reach 100001st prime number
+        var startedValue = 2
         
-        for j in 2...i{
-            
-            if i % j == 0 {
+        var isPrime = true
+        
+        while startedValue < i {
+            if i % startedValue == 0 {
+                isPrime = false
                 break
-            }else {
-                isPrime = true
             }
+           
+            startedValue += 1
         }
         
         if isPrime {
             primes.append(i)
         }
-        
         i += 1
+        
+    }
+    print(primes.count) // There are 10001 prime numbers
+    print(primes.last!) //Answer: 104743
+ 
+  
     
 
-    }
-    
-    print(primes.count)
-    print(primes)
     
 }
 
-solveQuestion7()
+//solveQuestion7()
 
 
 func solveQuestion8() {
     var number = "7316717653133062491922511967442657474235534919493496983520312774506326239578318016984801869478851843858615607891129494954595017379583319528532088055111254069874715852386305071569329096329522744304355766896648950445244523161731856403098711121722383113622298934233803081353362766142828064444866452387493035890729629049156044077239071381051585930796086670172427121883998797908792274921901699720888093776657273330010533678812202354218097512545405947522435258490771167055601360483958644670632441572215539753697817977846174064955149290862569321978468622482839722413756570560574902614079729686524145351004748216637048440319989000889524345065854122758866688116427171479924442928230863465674813919123162824586178664583591245665294765456828489128831426076900422421902267105562632111110937054421750694165896040807198403850962455444362981230987879927244284909188845801561660979191338754992005240636899125607176060588611646710940507754100225698315520005593572972571636269561882670428252483600823257530420752963450"
     var arrayNumber = Array(number)
-    print(arrayNumber)
-    print(arrayNumber[122])
+    
+    
     
     
 
@@ -397,12 +401,59 @@ func solveQuestion8() {
 //solveQuestion8()
 
 func solveQuestion9() {
-    // c = a^2  +  b^2
-    // a + b + a^2 + b^2 = 1000
-    // a^2 + b^2 + 2ab = 1000 - ab
-    // (a+b)^2 = 1000 - ab
-    // a+b = (1000 - ab).squareRoot
+    for i in 1...500 {
+        for j in 1...500 {
+            var squareOfC:Float = Float((i*i) + (j*j))
+            var k = squareOfC.squareRoot()
+            if Float(i + j) + k == 1000.0 {
+                
+                print(i)              //200
+                print(j)              //375
+                print(Int(k))         //425
+                print(i * j * Int(k)) //Answer: 31875000
+                
+            }
+        }
+    }
+   
     
 }
 
+solveQuestion9()
 
+func solveQuestion10() {
+    
+    
+    var lastNumber = 3
+    
+    var sumOfPrimes = 2
+    
+    
+    while lastNumber < 2000000 {
+        
+        var isPrime = true
+        
+        var startedValue = 2
+        
+        while startedValue < lastNumber {
+            if lastNumber % startedValue == 0 {
+                isPrime = false
+                break
+            }else {
+                startedValue += 1
+            }
+        }
+        
+        if isPrime {
+            sumOfPrimes += lastNumber
+        }
+        
+        lastNumber += 1
+        
+        
+    }
+
+    print(sumOfPrimes) //Answer: 142913828922
+}
+
+//solveQuestion10()
